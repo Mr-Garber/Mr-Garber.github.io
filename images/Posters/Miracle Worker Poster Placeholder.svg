@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="850" height="1100" viewBox="0 0 850 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Miracle Worker Poster Placeholder</title>
+  <desc id="desc">Placeholder poster for The Miracle Worker, Spring 2027</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#162739"/>
+      <stop offset="100%" stop-color="#315f7e"/>
+    </linearGradient>
+  </defs>
+  <rect width="850" height="1100" fill="url(#bg)"/>
+  <rect x="38" y="38" width="774" height="1024" fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="7"/>
+  <text x="425" y="380" text-anchor="middle" fill="#ffffff" font-family="Montserrat, Arial, sans-serif" font-size="50" font-weight="700">THE MIRACLE</text>
+  <text x="425" y="450" text-anchor="middle" fill="#ffffff" font-family="Montserrat, Arial, sans-serif" font-size="50" font-weight="700">WORKER</text>
+  <text x="425" y="530" text-anchor="middle" fill="#d6ecff" font-family="Oswald, Arial, sans-serif" font-size="44" letter-spacing="2">SPRING 2027</text>
+  <text x="425" y="980" text-anchor="middle" fill="#ffffff" fill-opacity="0.85" font-family="Montserrat, Arial, sans-serif" font-size="29">Poster Coming Soon</text>
+</svg>

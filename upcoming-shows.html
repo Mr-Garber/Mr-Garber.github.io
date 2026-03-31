@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBK Productions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <script src="scripts/include-html.js" defer></script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div data-include="includes/header.html"></div>
+<section class="donate-strip donate-strip-header" data-include="includes/donate-bar.html"></section>
+
+<main class="subpage">
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline class="page-bg-video">
+    <source src="Video/background.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="page-overlay"></div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h1>Upcoming Shows</h1>
+  </section>
+
+  <!-- PAGE CONTENT -->
+  <section class="page-content upcoming-content">
+    <p class="upcoming-intro">Click any poster to view a larger version.</p>
+
+    <div class="upcoming-grid">
+      
+      <!-- SHOW CARD 1 -->
+      <article class="show-card">
+        <button
+          type="button"
+          class="poster-card"
+          data-poster-src="images/Posters/The%20Music%20Man%20Poster.png"
+          data-poster-title="The Music Man Jr. (Summer 2026)"
+          data-poster-register="true"
+          data-poster-quick="Summer Workshop Musical"
+          data-poster-logistics="The Summer Workshop Musical is performed at Lapel Auditorium and is open to students grades 2nd - 12th regardless of school district."
+          data-poster-blurb="A fast-talking con man arrives in River City planning to swindle the town with a boys' band scheme, but his plans change when he falls for Marian the librarian. Filled with big ensemble numbers, humor, and heart, this classic musical celebrates community, imagination, and the joy of music."
+        >
+          <img src="images/Posters/The%20Music%20Man%20Poster.png" alt="The Music Man Jr. Poster">
+        </button>
+        <div class="show-info-card">
+          <h2>
+            <span class="show-title-main">The Music Man Jr.</span>
+            <span class="show-title-meta">Summer 2026</span>
+          </h2>
+          <p><strong>Summer Workshop Musical</strong><span class="show-info-detail"> The Summer Workshop Musical is performed at Lapel Auditorium and is open to students grades 2nd - 12th regardless of school district.</span></p>
+        </div>
+        <div class="show-register-wrap" data-include="includes/register-button.html"></div>
+      </article>
+
+      <!-- SHOW CARD 2 -->
+      <article class="show-card">
+        <button
+          type="button"
+          class="poster-card"
+          data-poster-src="images/Posters/Willy%20Wonka%20Poster%20Placeholder.svg"
+          data-poster-title="Willy Wonka (Fall 2026)"
+          data-poster-quick="Fall Musical"
+          data-poster-logistics="The Fall Musical is performed at Lapel Auditorium and is open for students grades 2nd - 12th in the Frankton-Lapel School District."
+          data-poster-blurb="Willy Wonka follows Charlie Bucket on a magical tour through the world's most extraordinary chocolate factory, where every room holds a new surprise. With unforgettable characters, playful spectacle, and a message about kindness and character, it is a whimsical adventure for all ages."
+        >
+          <img src="images/Posters/Willy%20Wonka%20Poster%20Placeholder.svg" alt="Willy Wonka Poster">
+        </button>
+        <div class="show-info-card">
+          <h2>
+            <span class="show-title-main">Willy Wonka</span>
+            <span class="show-title-meta">Fall 2026</span>
+          </h2>
+          <p><strong>Fall Musical</strong><span class="show-info-detail"> The Fall Musical is performed at Lapel Auditorium and is open for students grades 2nd - 12th in the Frankton-Lapel School District.</span></p>
+        </div>
+      </article>
+
+      <!-- SHOW CARD 3 -->
+      <article class="show-card">
+        <button
+          type="button"
+          class="poster-card"
+          data-poster-src="images/Posters/Miracle%20Worker%20Poster%20Placeholder.svg"
+          data-poster-title="Miracle Worker (Spring 2027)"
+          data-poster-quick="Spring Play"
+          data-poster-logistics="The Spring Play is performed at Frankton Jr./Sr. High School and is open for students grades 7th - 12th in the Frankton-Lapel School District."
+          data-poster-blurb="The Miracle Worker tells the powerful true story of Annie Sullivan's determination to reach Helen Keller and open the world to her through language. It is an inspiring, emotional drama about perseverance, trust, and the life-changing bond between teacher and student."
+        >
+          <img src="images/Posters/Miracle%20Worker%20Poster%20Placeholder.svg" alt="Miracle Worker Poster">
+        </button>
+        <div class="show-info-card">
+          <h2>
+            <span class="show-title-main">Miracle Worker</span>
+            <span class="show-title-meta">Spring 2027</span>
+          </h2>
+          <p><strong>Spring Play</strong><span class="show-info-detail"> The Spring Play is performed at Frankton Jr./Sr. High School and is open for students grades 7th - 12th in the Frankton-Lapel School District.</span></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- POSTER MODAL -->
+  <div class="poster-modal" id="poster-modal" aria-hidden="true">
+    <div class="poster-modal-backdrop" data-close-poster-modal></div>
+    <div class="poster-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="poster-modal-title">
+      <button type="button" class="poster-modal-close" data-close-poster-modal aria-label="Close expanded poster">×</button>
+      <img id="poster-modal-image" src="" alt="">
+      <div class="poster-modal-copy">
+        <div id="poster-modal-register-top" class="poster-modal-register poster-modal-register-top is-hidden" data-include="includes/register-button.html"></div>
+        <h2 id="poster-modal-title"></h2>
+        <p id="poster-modal-quick" class="poster-modal-quick"></p>
+        <p id="poster-modal-blurb"></p>
+        <div id="poster-modal-register" class="poster-modal-register is-hidden" data-include="includes/register-button.html"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<section class="donate-strip donate-strip-footer" data-include="includes/donate-bar.html"></section>
+<div data-include="includes/footer.html"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
