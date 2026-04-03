@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBK Productions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <script src="scripts/include-html.js" defer></script>
+</head>
+
+<body>
+
+<!-- NAV BAR -->
+<div data-include="includes/nav-bar.html"></div>
+<section class="donate-strip donate-strip-header" data-include="includes/donate-bar.html"></section>
+
+<main class="subpage">
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline class="page-bg-video">
+    <source src="video/background.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="page-overlay"></div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h1>Contact Us</h1>
+  </section>
+
+  <!-- PAGE CONTENT -->
+  <section class="page-content contact-page-content">
+    <div class="contact-intro">
+      <p>
+        We would love to hear from you. Whether you have a question about upcoming productions, summer workshop
+        opportunities, volunteering, sponsorships, or how to get involved, GBK Productions is here to help.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <article class="contact-card">
+        <div class="contact-follow-heading">
+          <h2>Follow &amp; Support GBK Productions</h2>
+          <a
+            href="https://www.facebook.com/people/GBK-Productions/61575813231693/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-heading-social-link"
+            aria-label="Visit GBK Productions on Facebook"
+          >
+            <img src="images/facebook.png" alt="Facebook" class="contact-heading-social-icon">
+          </a>
+        </div>
+        <p>
+          Follow GBK Productions on Facebook for announcements, reminders, and production updates. It is the best
+          place to stay current with what is happening next.
+        </p>
+        <p>
+          Community support also helps us create meaningful theatre experiences for students. If you would like to
+          invest in the program, donations are always appreciated.
+        </p>
+        <p>
+          <a
+            href="https://www.facebook.com/people/GBK-Productions/61575813231693/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-contact-btn"
+          >Visit Facebook</a>
+        </p>
+      </article>
+
+      <article class="contact-card">
+        <h2>Contact Info</h2>
+        <div class="contact-person-list">
+          <div class="contact-person">
+            <img src="images/Profile%20Pics/Mark%20Krontz%20-%20Creative%20Director.png" alt="Mark Krontz" class="contact-person-photo">
+            <div class="contact-person-copy">
+              <h3>Mark Krontz</h3>
+              <p class="contact-person-title">Creative Director</p>
+              <p><a href="mailto:mrkrontz76@gmail.com">mrkrontz76@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="contact-person">
+            <img src="images/Profile%20Pics/Caitlyn%20Garber%20-%20Producer.png" alt="Caitlyn Garber" class="contact-person-photo">
+            <div class="contact-person-copy">
+              <h3>Caitlyn Garber</h3>
+              <p class="contact-person-title">Producer / FHS Drama Club Advisor</p>
+              <p><a href="mailto:cgarber@flcs.k12.in.us">cgarber@flcs.k12.in.us</a></p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="contact-card contact-card-wide">
+        <h2>Send Us a Message</h2>
+        <p class="contact-form-intro">
+          Use the form below to send us your question or message.
+        </p>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/mbdpkwle"
+          method="post"
+          data-caitlyn-action="https://formspree.io/f/mbdpkwle"
+          data-mark-action="https://formspree.io/f/xjgpezwl"
+        >
+          <input type="hidden" name="recipient_email" value="">
+
+          <div class="contact-form-grid">
+            <label class="contact-field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required>
+            </label>
+
+            <label class="contact-field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+          </div>
+
+          <label class="contact-field">
+            <span>Subject</span>
+            <select name="subject" required>
+              <option value="">Choose a subject</option>
+              <option value="student-on-stage">Student - interested in performing on stage</option>
+              <option value="student-stage-tech">Student - interested in stage or tech crew</option>
+              <option value="adult-set-building">Adult - interested in set building</option>
+              <option value="adult-stage-tech">Adult - interested in stage or tech crew</option>
+              <option value="adult-show-days">Adult - interested in helping on show days</option>
+              <option value="sponsor-opportunities-questions">Sponsor Opportunities/Questions</option>
+            </select>
+          </label>
+
+          <label class="contact-field">
+            <span>Message</span>
+            <textarea name="message" rows="7" placeholder="Tell us a little about your question or how you'd like to get involved." required></textarea>
+          </label>
+
+          <div class="contact-form-actions">
+            <button type="submit" class="footer-contact-btn">Send Message</button>
+          </div>
+        </form>
+      </article>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<section class="donate-strip donate-strip-footer" data-include="includes/donate-bar.html"></section>
+<div data-include="includes/attribution.html"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

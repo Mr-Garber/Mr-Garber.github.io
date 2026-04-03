@@ -98,6 +98,7 @@ document.addEventListener('keydown', event => {
 document.addEventListener('DOMContentLoaded', () => {
   loadPastGalleryManifest()
   warmPastGalleriesInBackground()
+  initContactFormRouting()
 })
 
 function openPosterModal(trigger) {
@@ -157,19 +158,25 @@ function openBioModal(trigger) {
   const modal = document.getElementById('bio-modal')
   const image = document.getElementById('bio-modal-image')
   const name = document.getElementById('bio-modal-name')
+  const title = document.getElementById('bio-modal-title')
   const text = document.getElementById('bio-modal-text')
-  if (!modal || !image || !name || !text) return
+  if (!modal || !image || !name || !title || !text) return
 
   const src = trigger.getAttribute('data-bio-src')
-  const bioName = trigger.getAttribute('data-bio-name') || 'Team Member'
+  const bioNameRaw = trigger.getAttribute('data-bio-name') || 'Team Member'
+  const bioTitleAttr = trigger.getAttribute('data-bio-title') || ''
   const bioText = trigger.getAttribute('data-bio-text') || ''
   const thumb = trigger.querySelector('img')
-  const alt = thumb ? thumb.getAttribute('alt') : `${bioName} profile photo`
+  const splitName = bioNameRaw.split(' - ')
+  const bioName = splitName[0] || bioNameRaw
+  const bioTitle = bioTitleAttr || splitName.slice(1).join(' - ')
+  const alt = thumb ? thumb.getAttribute('alt') : `${bioNameRaw} profile photo`
 
   if (!src) return
   image.setAttribute('src', src)
-  image.setAttribute('alt', alt || `${bioName} profile photo`)
+  image.setAttribute('alt', alt || `${bioNameRaw} profile photo`)
   name.textContent = bioName
+  title.textContent = bioTitle
   text.textContent = bioText
   modal.classList.add('open')
   modal.setAttribute('aria-hidden', 'false')
@@ -339,4 +346,109 @@ function renderPastCarousel() {
   image.setAttribute('alt', `${pastCarouselState.title} image ${pastCarouselState.index + 1}`)
   title.textContent = pastCarouselState.title
   count.textContent = `${pastCarouselState.index + 1} / ${pastCarouselState.images.length}`
+}
+
+function initContactFormRouting() {
+  const form = document.querySelector('.contact-form')
+  if (!(form instanceof HTMLFormElement)) return
+
+  const nameField = form.querySelector('input[name="name"]')
+  const emailField = form.querySelector('input[name="email"]')
+  const subjectField = form.querySelector('select[name="subject"]')
+  const messageField = form.querySelector('textarea[name="message"]')
+  const recipientField = form.querySelector('input[name="recipient_email"]')
+  if (
+    !(nameField instanceof HTMLInputElement) ||
+    !(emailField instanceof HTMLInputElement) ||
+    !(subjectField instanceof HTMLSelectElement) ||
+    !(messageField instanceof HTMLTextAreaElement) ||
+    !(recipientField instanceof HTMLInputElement)
+  ) return
+
+  const caitlynAction = form.dataset.caitlynAction || ''
+  const markAction = form.dataset.markAction || ''
+  const recipientMap = {
+    'student-on-stage': 'cgarber@flcs.k12.in.us',
+    'student-stage-tech': 'cgarber@flcs.k12.in.us',
+    'adult-set-building': 'mrkrontz76@gmail.com',
+    'adult-stage-tech': 'mrkrontz76@gmail.com',
+    'adult-show-days': 'mrkrontz76@gmail.com',
+    'sponsor-opportunities-questions': 'mrkrontz76@gmail.com',
+  }
+
+  const updateRecipient = () => {
+    const subjectValue = subjectField.value
+    const isStudentInquiry = subjectValue.startsWith('student-')
+
+    recipientField.value = recipientMap[subjectValue] || ''
+
+    if (subjectValue) {
+      form.action = isStudentInquiry ? caitlynAction : markAction
+    } else if (caitlynAction) {
+      form.action = caitlynAction
+    }
+  }
+
+  const fieldPrompts = new Map([
+    [nameField, 'Please enter your name.'],
+    [emailField, 'Please enter your email address.'],
+    [subjectField, 'Please choose a subject.'],
+    [messageField, 'Please enter your message.'],
+  ])
+
+  const trimFieldValue = field => {
+    if (
+      field instanceof HTMLInputElement ||
+      field instanceof HTMLTextAreaElement
+    ) {
+      field.value = field.value.trim()
+    }
+  }
+
+  const validateField = field => {
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement)) {
+      return
+    }
+
+    field.setCustomValidity('')
+
+    if (field.validity.valueMissing) {
+      field.setCustomValidity(fieldPrompts.get(field) || 'Please complete this field.')
+      return
+    }
+
+    if (field instanceof HTMLInputElement && field.type === 'email' && field.validity.typeMismatch) {
+      field.setCustomValidity('Please enter a valid email address.')
+      return
+    }
+
+    if ('value' in field && typeof field.value === 'string' && !field.value.trim()) {
+      field.setCustomValidity(fieldPrompts.get(field) || 'Please complete this field.')
+    }
+  }
+
+  ;[nameField, emailField, subjectField, messageField].forEach(field => {
+    const eventName = field instanceof HTMLSelectElement ? 'change' : 'input'
+    field.addEventListener(eventName, () => validateField(field))
+    if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+      field.addEventListener('blur', () => {
+        trimFieldValue(field)
+        validateField(field)
+      })
+    }
+    field.addEventListener('invalid', () => validateField(field))
+  })
+
+  form.addEventListener('submit', event => {
+    ;[nameField, emailField, messageField].forEach(field => trimFieldValue(field))
+    ;[nameField, emailField, subjectField, messageField].forEach(field => validateField(field))
+
+    if (!form.checkValidity()) {
+      event.preventDefault()
+      form.reportValidity()
+    }
+  })
+
+  subjectField.addEventListener('change', updateRecipient)
+  updateRecipient()
 }
