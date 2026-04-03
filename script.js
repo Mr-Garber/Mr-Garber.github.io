@@ -371,19 +371,20 @@ function initContactFormRouting() {
     'student-on-stage': 'cgarber@flcs.k12.in.us',
     'student-stage-tech': 'cgarber@flcs.k12.in.us',
     'adult-set-building': 'mrkrontz76@gmail.com',
-    'adult-stage-tech': 'mrkrontz76@gmail.com',
+    'adult-stage-tech': 'cgarber@flcs.k12.in.us',
     'adult-show-days': 'mrkrontz76@gmail.com',
     'sponsor-opportunities-questions': 'mrkrontz76@gmail.com',
   }
 
   const updateRecipient = () => {
     const subjectValue = subjectField.value
-    const isStudentInquiry = subjectValue.startsWith('student-')
+    const shouldRouteToCaitlyn =
+      subjectValue.startsWith('student-') || subjectValue === 'adult-stage-tech'
 
     recipientField.value = recipientMap[subjectValue] || ''
 
     if (subjectValue) {
-      form.action = isStudentInquiry ? caitlynAction : markAction
+      form.action = shouldRouteToCaitlyn ? caitlynAction : markAction
     } else if (caitlynAction) {
       form.action = caitlynAction
     }
