@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBK Productions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <script src="scripts/include-html.js" defer></script>
+</head>
+
+<body>
+
+<!-- NAV BAR -->
+<div data-include="includes/nav-bar.html"></div>
+<section class="donate-strip donate-strip-header" data-include="includes/donate-bar.html"></section>
+
+<main class="subpage">
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline class="page-bg-video">
+    <source src="video/background.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="page-overlay"></div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h1>Summer Workshop Registration</h1>
+  </section>
+
+  <!-- PAGE CONTENT -->
+  <section class="page-content registration-page-content">
+    <div class="registration-shell">
+      <article class="registration-panel registration-panel-form">
+        <h2>Registration Form</h2>
+        <p class="registration-form-intro">
+          Fill out one form per student registered. Thank you!
+        </p>
+        <div class="registration-embed-card">
+          <div class="registration-embed-frame">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSf-oJ5aBHnX4Aa-hd8zrtpez7N_hShMn05Wa9suFw8ZmtpPSQ/viewform?embedded=true"
+              title="Summer Workshop Registration Form"
+              loading="lazy"
+            >
+              Loading...
+            </iframe>
+          </div>
+
+          <div class="registration-embed-actions">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSf-oJ5aBHnX4Aa-hd8zrtpez7N_hShMn05Wa9suFw8ZmtpPSQ/viewform?usp=header"
+              class="register-btn register-btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Google Form
+            </a>
+          </div>
+
+          <p class="contact-form-note registration-embed-note">
+            If the embedded form does not load well on your device, use the button above to open it in a new tab.
+          </p>
+
+          <div class="registration-embed-actions registration-embed-actions-bottom">
+            <a href="summer-workshop-confirmation.html" class="register-btn">Payment Options</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<div data-include="includes/contact-bar.html"></div>
+<div data-include="includes/attribution.html"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

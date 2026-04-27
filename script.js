@@ -99,6 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
   loadPastGalleryManifest()
   warmPastGalleriesInBackground()
   initContactFormRouting()
+  initFormspreeForms()
+  initPhoneFormatting()
 })
 
 function openPosterModal(trigger) {
@@ -452,4 +454,199 @@ function initContactFormRouting() {
 
   subjectField.addEventListener('change', updateRecipient)
   updateRecipient()
+}
+
+function initFormspreeForms() {
+  const forms = document.querySelectorAll('[data-formspree-form]')
+  forms.forEach(form => {
+    if (!(form instanceof HTMLFormElement)) return
+
+    const status = form.querySelector('[data-form-status]')
+    const submitButton = form.querySelector('button[type="submit"]')
+    if (!(submitButton instanceof HTMLButtonElement)) return
+
+    const fields = Array.from(form.querySelectorAll('input, select, textarea'))
+    fields.forEach(field => {
+      if (
+        !(
+          field instanceof HTMLInputElement ||
+          field instanceof HTMLSelectElement ||
+          field instanceof HTMLTextAreaElement
+        )
+      ) {
+        return
+      }
+
+      const eventName = field instanceof HTMLSelectElement ? 'change' : 'input'
+      field.addEventListener(eventName, () => validateGenericFormField(field))
+
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+        field.addEventListener('blur', () => {
+          if (field.type !== 'checkbox') {
+            field.value = field.value.trim()
+          }
+          validateGenericFormField(field)
+        })
+      }
+
+      field.addEventListener('invalid', () => validateGenericFormField(field))
+    })
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault()
+
+      fields.forEach(field => {
+        if (
+          (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) &&
+          field.type !== 'checkbox'
+        ) {
+          field.value = field.value.trim()
+        }
+        validateGenericFormField(field)
+      })
+
+      if (!form.reportValidity()) {
+        return
+      }
+
+      const selectedPaymentMethod = getSelectedPaymentMethod(form)
+      const isOnlinePayment = selectedPaymentMethod === 'Online Payment'
+      const endpoint = (form.dataset.formspreeEndpoint || form.getAttribute('action') || '').trim()
+      const looksConfigured =
+        endpoint &&
+        /^https:\/\/formspree\.io\/f\/[^/\s]+$/i.test(endpoint) &&
+        !/REPLACE_WITH_YOUR_FORM_ID/i.test(endpoint)
+
+      if (!looksConfigured) {
+        setFormStatus(
+          status,
+          'Add your real Formspree endpoint to this page before publishing the registration form.',
+          'error'
+        )
+        return
+      }
+
+      submitButton.disabled = true
+      const originalButtonText = submitButton.textContent
+      submitButton.textContent = 'Sending...'
+      setFormStatus(status, 'Submitting your registration...', 'pending')
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+          },
+          body: new FormData(form),
+        })
+
+        if (!response.ok) {
+          throw new Error(`Formspree request failed with status ${response.status}`)
+        }
+
+        form.reset()
+        setFormStatus(
+          status,
+          form.dataset.successMessage || 'Your submission has been sent successfully.',
+          'success'
+        )
+
+        if (isOnlinePayment) {
+          const paymentUrl = (form.dataset.onlinePaymentUrl || '').trim()
+          if (paymentUrl) {
+            window.location.href = paymentUrl
+            return
+          }
+        }
+
+        const successRedirect = (form.dataset.successRedirect || '').trim()
+        if (successRedirect) {
+          window.location.href = successRedirect
+          return
+        }
+      } catch (error) {
+        console.error(error)
+        setFormStatus(
+          status,
+          'We could not submit the form right now. Please try again in a moment.',
+          'error'
+        )
+      } finally {
+        submitButton.disabled = false
+        submitButton.textContent = originalButtonText || 'Submit'
+      }
+    })
+  })
+}
+
+function setFormStatus(statusElement, message, tone) {
+  if (!(statusElement instanceof HTMLElement)) return
+
+  statusElement.textContent = message
+  statusElement.dataset.state = tone || ''
+}
+
+function initPhoneFormatting() {
+  const phoneFields = document.querySelectorAll('input[type="tel"]')
+  phoneFields.forEach(field => {
+    if (!(field instanceof HTMLInputElement)) return
+
+    field.setAttribute('inputmode', 'numeric')
+    field.setAttribute('maxlength', '14')
+
+    field.addEventListener('input', () => {
+      const digits = field.value.replace(/\D/g, '').slice(0, 10)
+      field.value = formatPhoneNumber(digits)
+    })
+  })
+}
+
+function formatPhoneNumber(digits) {
+  if (!digits) return ''
+  if (digits.length < 4) return `(${digits}`
+  if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`
+}
+
+function validateGenericFormField(field) {
+  if (
+    !(
+      field instanceof HTMLInputElement ||
+      field instanceof HTMLSelectElement ||
+      field instanceof HTMLTextAreaElement
+    )
+  ) {
+    return
+  }
+
+  field.setCustomValidity('')
+
+  if (field.validity.valueMissing) {
+    if (field instanceof HTMLInputElement && field.type === 'checkbox') {
+      field.setCustomValidity('Please confirm this checkbox before submitting.')
+      return
+    }
+
+    field.setCustomValidity('Please complete this field.')
+    return
+  }
+
+  if (field instanceof HTMLInputElement && field.type === 'email') {
+    const emailValue = field.value.trim()
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (emailValue && !emailPattern.test(emailValue)) {
+      field.setCustomValidity('Please enter a valid email address.')
+      return
+    }
+  }
+}
+
+function getSelectedPaymentMethod(form) {
+  if (!(form instanceof HTMLFormElement)) return ''
+
+  const selected = form.querySelector('input[name="payment_method"]:checked')
+  if (!(selected instanceof HTMLInputElement)) return ''
+
+  return selected.value
 }
