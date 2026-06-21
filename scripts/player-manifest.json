@@ -1,7 +1,7 @@
 [
   {
     "number": "01",
-    "title": "Track 01",
+    "title": "Opening",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/01 Opening.mp3"
   },
@@ -13,7 +13,7 @@
   },
   {
     "number": "03",
-    "title": "Track 03",
+    "title": "Change To Scene 2",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/03 Change To Scene 2.mp3"
   },
@@ -31,13 +31,13 @@
   },
   {
     "number": "06",
-    "title": "Track 06",
+    "title": "Change To Scene 3",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/06 Change To Scene 3.mp3"
   },
   {
     "number": "07",
-    "title": "Piano Lesson_If You Don't MInd W_",
+    "title": "Piano Lesson If You Don't MInd",
     "rehearsalSrc": "music/music man jr rehearsal music/07 Piano Lesson_If You Don't MInd W_.mp3",
     "accompanimentSrc": "music/music man jr accompaniment music/07 Piano Lesson_If You Don't Mind.mp3"
   },
@@ -49,7 +49,7 @@
   },
   {
     "number": "09",
-    "title": "Columbia, Gem Of The Ocean W_Voca",
+    "title": "Columbia, Gem Of The Ocean",
     "rehearsalSrc": "music/music man jr rehearsal music/09 Columbia, Gem Of The Ocean W_Voca.mp3",
     "accompanimentSrc": "music/music man jr accompaniment music/09 Columbia, Gem Of Ocean.mp3"
   },
@@ -61,19 +61,19 @@
   },
   {
     "number": "11",
-    "title": "Track 11",
+    "title": "76 Trombones Playoff",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/11 76 Trombones Playoff.mp3"
   },
   {
     "number": "12",
-    "title": "Ice Cream_Sincere",
+    "title": "Ice Cream Sincere",
     "rehearsalSrc": "music/music man jr rehearsal music/12 Ice Cream_Sincere W_Vocals.mp3",
     "accompanimentSrc": "music/music man jr accompaniment music/12 Ice Cream_Sincere (A cappella_Ind.mp3"
   },
   {
     "number": "13",
-    "title": "Track 13",
+    "title": "Change To Scene 6",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/13 Change To Scene 6.mp3"
   },
@@ -91,7 +91,7 @@
   },
   {
     "number": "16",
-    "title": "Track 16",
+    "title": "Change To Scene 7",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/16 Change To Scene 7.mp3"
   },
@@ -115,7 +115,7 @@
   },
   {
     "number": "20",
-    "title": "Track 20",
+    "title": "Change To Scene 9",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/20 Change To Scene 9.mp3"
   },
@@ -127,7 +127,7 @@
   },
   {
     "number": "22",
-    "title": "Track 22",
+    "title": "Chase Music",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/22 Chase Music.mp3"
   },
@@ -139,7 +139,7 @@
   },
   {
     "number": "24",
-    "title": "Track 24",
+    "title": "Finale",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/24 Finale.mp3"
   },

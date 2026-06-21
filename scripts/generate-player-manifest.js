@@ -13,13 +13,17 @@ function extractTrackNumber(filename) {
 }
 
 function getTrackTitle(filename) {
+  if (!filename) return '';
   // Remove track number and file extension
   const withoutNumber = filename.replace(/^\d+\s*/, '');
   const withoutExt = withoutNumber.replace(/\.[^/.]+$/, '');
-  // Clean up common patterns
+  // Normalize separators and clean up common patterns
   return withoutExt
-    .replace(/\s*W_Vocals.*$/i, '')
+    .replace(/_/g, ' ')
+    .replace(/\s*W(?:_?Vocals?|_?Voca|_?V)?\b.*$/i, '')
     .replace(/\s*\(A cappella.*$/i, '')
+    .replace(/\s*W\.$/i, '')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -68,7 +72,8 @@ function generateManifest() {
   const manifest = sortedNumbers.map(number => {
     const track = trackMap.get(number);
     const rehearsalFile = track.rehearsalSrc ? path.basename(track.rehearsalSrc) : '';
-    const title = getTrackTitle(rehearsalFile) || `Track ${number}`;
+    const accompanimentFile = track.accompanimentSrc ? path.basename(track.accompanimentSrc) : '';
+    const title = getTrackTitle(rehearsalFile) || getTrackTitle(accompanimentFile) || `Track ${number}`;
 
     return {
       number,
