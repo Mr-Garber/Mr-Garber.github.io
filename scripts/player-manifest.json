@@ -1,0 +1,152 @@
+[
+  {
+    "number": "01",
+    "title": "Track 01",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/01 Opening.mp3"
+  },
+  {
+    "number": "02",
+    "title": "Rock Island",
+    "rehearsalSrc": "music/music man jr rehearsal music/02 Rock Island W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/02 Rock Island.mp3"
+  },
+  {
+    "number": "03",
+    "title": "Track 03",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/03 Change To Scene 2.mp3"
+  },
+  {
+    "number": "04",
+    "title": "Iowa Stubborn",
+    "rehearsalSrc": "music/music man jr rehearsal music/04 Iowa Stubborn W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/04 Iowa Stubborn.mp3"
+  },
+  {
+    "number": "05",
+    "title": "Ya Got Trouble",
+    "rehearsalSrc": "music/music man jr rehearsal music/05 Ya Got Trouble W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/05 Ya Got Trouble.mp3"
+  },
+  {
+    "number": "06",
+    "title": "Track 06",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/06 Change To Scene 3.mp3"
+  },
+  {
+    "number": "07",
+    "title": "Piano Lesson_If You Don't MInd W_",
+    "rehearsalSrc": "music/music man jr rehearsal music/07 Piano Lesson_If You Don't MInd W_.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/07 Piano Lesson_If You Don't Mind.mp3"
+  },
+  {
+    "number": "08",
+    "title": "Goodnight, My Someone",
+    "rehearsalSrc": "music/music man jr rehearsal music/08 Goodnight, My Someone W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/08 Good Night, My Someone.mp3"
+  },
+  {
+    "number": "09",
+    "title": "Columbia, Gem Of The Ocean W_Voca",
+    "rehearsalSrc": "music/music man jr rehearsal music/09 Columbia, Gem Of The Ocean W_Voca.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/09 Columbia, Gem Of Ocean.mp3"
+  },
+  {
+    "number": "10",
+    "title": "76 Trombones",
+    "rehearsalSrc": "music/music man jr rehearsal music/10 76 Trombones W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/10 76 Trombones.mp3"
+  },
+  {
+    "number": "11",
+    "title": "Track 11",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/11 76 Trombones Playoff.mp3"
+  },
+  {
+    "number": "12",
+    "title": "Ice Cream_Sincere",
+    "rehearsalSrc": "music/music man jr rehearsal music/12 Ice Cream_Sincere W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/12 Ice Cream_Sincere (A cappella_Ind.mp3"
+  },
+  {
+    "number": "13",
+    "title": "Track 13",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/13 Change To Scene 6.mp3"
+  },
+  {
+    "number": "14",
+    "title": "Pick-a-Little-(part1)",
+    "rehearsalSrc": "music/music man jr rehearsal music/14 Pick-a-Little-(part1) W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/14 Pick-a-Little-(part1).mp3"
+  },
+  {
+    "number": "15",
+    "title": "Pick-a-Little-(part2)",
+    "rehearsalSrc": "music/music man jr rehearsal music/15 Pick-a-Little-(part2) W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/15 Pick-a-Little-(part2).mp3"
+  },
+  {
+    "number": "16",
+    "title": "Track 16",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/16 Change To Scene 7.mp3"
+  },
+  {
+    "number": "17",
+    "title": "Wells Fargo Wagon",
+    "rehearsalSrc": "music/music man jr rehearsal music/17 Wells Fargo Wagon W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/17 Wells Fargo Wagon.mp3"
+  },
+  {
+    "number": "18",
+    "title": "Shipoopi",
+    "rehearsalSrc": "music/music man jr rehearsal music/18 Shipoopi W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/18 Shipoopi.mp3"
+  },
+  {
+    "number": "19",
+    "title": "Pick-a-Little (Reprise)",
+    "rehearsalSrc": "music/music man jr rehearsal music/19 Pick-a-Little (Reprise) W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/19 Pick-a-Little (Reprise).mp3"
+  },
+  {
+    "number": "20",
+    "title": "Track 20",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/20 Change To Scene 9.mp3"
+  },
+  {
+    "number": "21",
+    "title": "Gary, Indiana",
+    "rehearsalSrc": "music/music man jr rehearsal music/21 Gary, Indiana W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/21 Gary, Indiana.mp3"
+  },
+  {
+    "number": "22",
+    "title": "Track 22",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/22 Chase Music.mp3"
+  },
+  {
+    "number": "23",
+    "title": "Till There Was You",
+    "rehearsalSrc": "music/music man jr rehearsal music/23 Till There Was You W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/23 Till There Was You.mp3"
+  },
+  {
+    "number": "24",
+    "title": "Track 24",
+    "rehearsalSrc": "",
+    "accompanimentSrc": "music/music man jr accompaniment music/24 Finale.mp3"
+  },
+  {
+    "number": "25",
+    "title": "Bows",
+    "rehearsalSrc": "music/music man jr rehearsal music/25 Bows W_Vocals.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/25 Bows.mp3"
+  }
+]
