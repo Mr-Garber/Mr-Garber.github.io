@@ -35,208 +35,47 @@
   <!-- PAGE CONTENT -->
   <section class="page-content">
     <div class="resources-intro">
-      <p>Use these rehearsal tracks to practice at home. Each song can be played directly on this page or downloaded for offline listening.</p>
+      <p>Use the media player below to play rehearsal or accompaniment versions from the show.</p>
     </div>
 
     <section class="resource-library" aria-labelledby="music-man-jr-heading">
       <div class="resource-library-header">
         <p class="resource-library-kicker">Rehearsal Music</p>
         <h2 id="music-man-jr-heading">The Music Man Jr.</h2>
-        <p>Vocal rehearsal tracks</p>
+        <p>Rehearsal and accompaniment tracks</p>
       </div>
 
-      <div class="audio-library" role="list">
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 02</p>
-            <h3>Rock Island</h3>
+      <div class="audio-player-card">
+        <div class="audio-player-header">
+          <div class="player-info">
+            <p class="audio-track-number" id="current-track-number">Track 02</p>
+            <h3 id="current-track-title">Rock Island</h3>
+            <p class="audio-track-version" id="current-track-version">Rehearsal</p>
           </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/02%20Rock%20Island%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/02%20Rock%20Island%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
+          <div class="player-mode-toggle" role="group" aria-label="Select track version">
+            <button type="button" class="player-mode-button active" data-version="rehearsal">Rehearsal</button>
+            <button type="button" class="player-mode-button" data-version="accompaniment">Accompaniment</button>
+          </div>
+        </div>
 
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 04</p>
-            <h3>Iowa Stubborn</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/04%20Iowa%20Stubborn%20W_Vocals.mp3" type="audio/mpeg">
+        <div class="player-controls">
+          <button id="player-prev" type="button" class="player-nav-button" aria-label="Previous track">⏮</button>
+          <button id="player-play-pause" type="button" class="player-play-button" aria-label="Play">▶</button>
+          <button id="player-next" type="button" class="player-nav-button" aria-label="Next track">⏭</button>
+          <audio id="shared-audio" preload="metadata">
             Your browser does not support the audio element.
           </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/04%20Iowa%20Stubborn%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
+        </div>
 
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 05</p>
-            <h3>Ya Got Trouble</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/05%20Ya%20Got%20Trouble%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/05%20Ya%20Got%20Trouble%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
+        <div class="player-progress-wrapper">
+          <span id="current-time">0:00</span>
+          <input id="player-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek playback position">
+          <span id="duration">0:00</span>
+        </div>
+      </div>
 
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 07</p>
-            <h3>Piano Lesson / If You Don't Mind</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/07%20Piano%20Lesson_If%20You%20Don't%20MInd%20W_.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/07%20Piano%20Lesson_If%20You%20Don't%20MInd%20W_.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 08</p>
-            <h3>Goodnight, My Someone</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/08%20Goodnight,%20My%20Someone%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/08%20Goodnight,%20My%20Someone%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 09</p>
-            <h3>Columbia, Gem of the Ocean</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/09%20Columbia,%20Gem%20Of%20The%20Ocean%20W_Voca.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/09%20Columbia,%20Gem%20Of%20The%20Ocean%20W_Voca.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 10</p>
-            <h3>76 Trombones</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/10%2076%20Trombones%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/10%2076%20Trombones%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 12</p>
-            <h3>Ice Cream / Sincere</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/12%20Ice%20Cream_Sincere%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/12%20Ice%20Cream_Sincere%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 14</p>
-            <h3>Pick-a-Little, Part 1</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/14%20Pick-a-Little-(part1)%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/14%20Pick-a-Little-(part1)%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 15</p>
-            <h3>Pick-a-Little, Part 2</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/15%20Pick-a-Little-(part2)%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/15%20Pick-a-Little-(part2)%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 17</p>
-            <h3>Wells Fargo Wagon</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/17%20Wells%20Fargo%20Wagon%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/17%20Wells%20Fargo%20Wagon%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 18</p>
-            <h3>Shipoopi</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/18%20Shipoopi%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/18%20Shipoopi%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 19</p>
-            <h3>Pick-a-Little (Reprise)</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/19%20Pick-a-Little%20(Reprise)%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/19%20Pick-a-Little%20(Reprise)%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 21</p>
-            <h3>Gary, Indiana</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/21%20Gary,%20Indiana%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/21%20Gary,%20Indiana%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 23</p>
-            <h3>Till There Was You</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/23%20Till%20There%20Was%20You%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/23%20Till%20There%20Was%20You%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
-
-        <article class="audio-card" role="listitem">
-          <div class="audio-card-copy">
-            <p class="audio-track-number">Track 25</p>
-            <h3>Bows</h3>
-          </div>
-          <audio controls preload="none">
-            <source src="music/music%20man%20jr%20rehearsal%20music/25%20Bows%20W_Vocals.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-          <a class="audio-download" href="music/music%20man%20jr%20rehearsal%20music/25%20Bows%20W_Vocals.mp3" download>Download MP3</a>
-        </article>
+      <div class="audio-library" role="list" id="audio-library">
+        <!-- Track cards will be generated dynamically from manifest -->
       </div>
     </section>
   </section>

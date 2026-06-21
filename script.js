@@ -95,13 +95,298 @@ document.addEventListener('keydown', event => {
   }
 })
 
-document.addEventListener('DOMContentLoaded', () => {
+const playerManifestUrl = 'scripts/player-manifest.json'
+let playerManifestPromise = null
+
+async function loadPlayerManifest() {
+  if (playerManifestPromise) {
+    return playerManifestPromise
+  }
+
+  playerManifestPromise = fetch(playerManifestUrl, { cache: 'no-cache' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Unable to load player manifest: ${response.status}`)
+      }
+      return response.json()
+    })
+    .catch(error => {
+      console.error(error)
+      playerManifestPromise = null
+      return []
+    })
+
+  return playerManifestPromise
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
   loadPastGalleryManifest()
   warmPastGalleriesInBackground()
   initContactFormRouting()
   initFormspreeForms()
   initPhoneFormatting()
+  await initSharedAudioPlayer()
 })
+
+async function initSharedAudioPlayer() {
+  const audio = document.getElementById('shared-audio')
+  if (!audio) return
+
+  const currentTrackNumber = document.getElementById('current-track-number')
+  const currentTrackTitle = document.getElementById('current-track-title')
+  const currentTrackVersion = document.getElementById('current-track-version')
+  const prevButton = document.getElementById('player-prev')
+  const nextButton = document.getElementById('player-next')
+  const seekInput = document.getElementById('player-seek')
+  const currentTimeLabel = document.getElementById('current-time')
+  const durationLabel = document.getElementById('duration')
+  const modeButtons = Array.from(document.querySelectorAll('.player-mode-button'))
+  const audioLibrary = document.getElementById('audio-library')
+  const playPauseButton = document.getElementById('player-play-pause')
+  const manifestTracks = await loadPlayerManifest()
+
+  const tracks = Array.isArray(manifestTracks) && manifestTracks.length
+    ? manifestTracks
+    : [
+      {
+        number: '02',
+        title: 'Rock Island',
+        rehearsalSrc: 'music/music man jr rehearsal music/02 Rock Island W_Vocals.mp3',
+        accompanimentSrc: 'music/music man jr accompaniment music/02 Rock Island.mp3',
+      },
+    ]
+
+  let visibleTracks = tracks
+
+  const state = {
+    currentIndex: 0,
+    version: 'rehearsal',
+    currentTrackNumber: null, // Track by track number, not index
+  }
+
+  function renderTrackCards() {
+    if (!audioLibrary) return
+    audioLibrary.innerHTML = ''
+    
+    // Filter tracks based on current mode
+    if (state.version === 'rehearsal') {
+      visibleTracks = tracks.filter(track => track.rehearsalSrc)
+    } else {
+      visibleTracks = tracks
+    }
+    
+    visibleTracks.forEach((track, index) => {
+      const article = document.createElement('article')
+      article.className = `audio-card${index === 0 ? ' selected' : ''}`
+      article.setAttribute('role', 'listitem')
+      article.setAttribute('data-track-index', index)
+      article.setAttribute('tabindex', '0')
+
+      const copy = document.createElement('div')
+      copy.className = 'audio-card-copy'
+
+      const trackNum = document.createElement('p')
+      trackNum.className = 'audio-track-number'
+      trackNum.textContent = `Track ${track.number}`
+
+      const title = document.createElement('h3')
+      title.textContent = track.title
+
+      copy.appendChild(trackNum)
+      copy.appendChild(title)
+      article.appendChild(copy)
+      audioLibrary.appendChild(article)
+    })
+  }
+
+  renderTrackCards()
+  state.currentTrackNumber = visibleTracks[0]?.number
+
+  const trackCards = Array.from(document.querySelectorAll('.audio-card'))
+
+  function setTrackSource() {
+    const track = visibleTracks[state.currentIndex]
+    state.currentTrackNumber = track.number
+    const source = state.version === 'accompaniment' ? track.accompanimentSrc : track.rehearsalSrc
+    audio.src = source
+    audio.load()
+    updateNowPlaying(track)
+    updateMediaSession(track)
+  }
+
+  function updateNowPlaying(track) {
+    if (!track) track = visibleTracks[state.currentIndex]
+    currentTrackNumber.textContent = `Track ${track.number}`
+    currentTrackTitle.textContent = track.title
+    currentTrackVersion.textContent = state.version === 'accompaniment' ? 'Accompaniment' : 'Rehearsal'
+    const currentCards = Array.from(document.querySelectorAll('.audio-card'))
+    currentCards.forEach((card, index) => {
+      card.classList.toggle('selected', index === state.currentIndex)
+      card.setAttribute('aria-current', index === state.currentIndex ? 'true' : 'false')
+    })
+  }
+
+  function skipTrack(direction) {
+    state.currentIndex = (state.currentIndex + direction + visibleTracks.length) % visibleTracks.length
+    setTrackSource()
+    audio.play().catch(() => {})
+  }
+
+  function setPlaybackState() {
+    if (!navigator.mediaSession) return
+    navigator.mediaSession.playbackState = audio.paused ? 'paused' : 'playing'
+  }
+
+  function updatePlayPauseButton() {
+    if (!playPauseButton) return
+    const isPlaying = !audio.paused && !audio.ended
+    playPauseButton.textContent = isPlaying ? '❚❚' : '▶'
+    playPauseButton.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play')
+  }
+
+  function updateMediaSession(track) {
+    if (!('mediaSession' in navigator)) return
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: track.title,
+      artist: 'GBK Productions',
+      album: 'The Music Man Jr.',
+      artwork: [
+        { src: 'images/logo.png', sizes: '512x512', type: 'image/png' },
+      ],
+    })
+
+    const setHandler = (action, handler) => {
+      try {
+        navigator.mediaSession.setActionHandler(action, handler)
+      } catch (error) {
+        // Ignore unsupported action handlers
+      }
+    }
+
+    setHandler('previoustrack', () => skipTrack(-1))
+    setHandler('nexttrack', () => skipTrack(1))
+    setHandler('play', () => audio.play().catch(() => {}))
+    setHandler('pause', () => audio.pause())
+    setHandler('seekbackward', event => {
+      audio.currentTime = Math.max(0, audio.currentTime - (event.seekOffset || 10))
+    })
+    setHandler('seekforward', event => {
+      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + (event.seekOffset || 10))
+    })
+  }
+
+  function updateTimeDisplay() {
+    if (audio.duration && !Number.isNaN(audio.duration)) {
+      durationLabel.textContent = formatTime(audio.duration)
+      const position = (audio.currentTime / audio.duration) * 100
+      seekInput.value = Number.isFinite(position) ? position : 0
+    }
+    currentTimeLabel.textContent = formatTime(audio.currentTime)
+  }
+
+  function formatTime(time) {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60).toString().padStart(2, '0')
+    return `${minutes}:${seconds}`
+  }
+
+  prevButton?.addEventListener('click', () => skipTrack(-1))
+  nextButton?.addEventListener('click', () => skipTrack(1))
+  playPauseButton?.addEventListener('click', () => {
+    if (audio.paused || audio.ended) {
+      audio.play().catch(() => {})
+    } else {
+      audio.pause()
+    }
+  })
+
+  seekInput?.addEventListener('input', () => {
+    if (!audio.duration) return
+    const value = Number(seekInput.value)
+    audio.currentTime = (value / 100) * audio.duration
+  })
+
+  audio.addEventListener('loadedmetadata', () => {
+    durationLabel.textContent = formatTime(audio.duration)
+    updateTimeDisplay()
+  })
+
+  audio.addEventListener('timeupdate', updateTimeDisplay)
+  audio.addEventListener('play', () => {
+    setPlaybackState()
+    updatePlayPauseButton()
+  })
+  audio.addEventListener('pause', () => {
+    setPlaybackState()
+    updatePlayPauseButton()
+  })
+  audio.addEventListener('ended', () => skipTrack(1))
+
+  modeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      modeButtons.forEach(btn => btn.classList.remove('active'))
+      button.classList.add('active')
+      state.version = button.dataset.version || 'rehearsal'
+      renderTrackCards()
+      const newTrackCards = Array.from(document.querySelectorAll('.audio-card'))
+      attachTrackCardListeners(newTrackCards)
+      
+      // Find the same track number in the new filtered list, or the next available
+      if (state.currentTrackNumber) {
+        const trackIndex = visibleTracks.findIndex(track => track.number === state.currentTrackNumber)
+        if (trackIndex !== -1) {
+          state.currentIndex = trackIndex
+        } else {
+          // Track doesn't exist in new mode, find the next one with higher number
+          const nextTrack = visibleTracks.find(track => track.number > state.currentTrackNumber)
+          state.currentIndex = nextTrack ? visibleTracks.indexOf(nextTrack) : 0
+        }
+      } else {
+        state.currentIndex = 0
+      }
+      
+      setTrackSource()
+      audio.play().catch(() => {})
+    })
+  })
+
+  trackCards.forEach((card, index) => {
+    const selectTrack = () => {
+      state.currentIndex = index
+      setTrackSource()
+      audio.play().catch(() => {})
+    }
+
+    card.addEventListener('click', selectTrack)
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        selectTrack()
+      }
+    })
+  })
+
+  function attachTrackCardListeners(cards) {
+    cards.forEach((card, index) => {
+      const selectTrack = () => {
+        state.currentIndex = index
+        setTrackSource()
+        audio.play().catch(() => {})
+      }
+
+      card.addEventListener('click', selectTrack)
+      card.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          selectTrack()
+        }
+      })
+    })
+  }
+
+  setTrackSource()
+  updatePlayPauseButton()
+}
 
 function openPosterModal(trigger) {
   const modal = document.getElementById('poster-modal')
