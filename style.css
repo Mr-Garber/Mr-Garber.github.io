@@ -92,7 +92,6 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -912,6 +911,8 @@ main {
 
 .workshop-register-wrap {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin: 16px 0 24px;
 }
@@ -1246,6 +1247,14 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+.cast-list-btn {
+  display: block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  font-size: 0.8em;
+  text-align: center;
+}
+
 .register-btn-secondary {
   padding: 8px 18px;
   font-size: 0.88rem;
@@ -1279,6 +1288,8 @@ main {
 
 .show-register-wrap {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: 2px;
 }
@@ -1422,6 +1433,8 @@ main {
 
 .poster-modal-register {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: flex-start;
   margin-top: 22px;
 }
