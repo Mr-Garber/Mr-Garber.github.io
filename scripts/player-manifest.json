@@ -43,9 +43,9 @@
   },
   {
     "number": "08",
-    "title": "Goodnight, My Someone",
-    "rehearsalSrc": "music/music man jr rehearsal music/08 Goodnight, My Someone W_Vocals.mp3",
-    "accompanimentSrc": "music/music man jr accompaniment music/08 Good Night, My Someone.mp3"
+    "title": "Goodnight My Someone",
+    "rehearsalSrc": "music/music man jr rehearsal music/08 Goodnight My Someone.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/08 Goodnight My Someone.mp3"
   },
   {
     "number": "09",
@@ -94,6 +94,12 @@
     "title": "Change To Scene 7",
     "rehearsalSrc": "",
     "accompanimentSrc": "music/music man jr accompaniment music/16 Change To Scene 7.mp3"
+  },
+  {
+    "number": "16b",
+    "title": "Marian The Librarian",
+    "rehearsalSrc": "music/music man jr rehearsal music/16b Marian The Librarian.mp3",
+    "accompanimentSrc": "music/music man jr accompaniment music/16b Marian The Librarian.mp3"
   },
   {
     "number": "17",

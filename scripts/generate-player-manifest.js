@@ -8,14 +8,14 @@ const ACCOMPANIMENT_DIR = path.join(__dirname, '../music/music man jr accompanim
 const OUTPUT_FILE = path.join(__dirname, 'player-manifest.json');
 
 function extractTrackNumber(filename) {
-  const match = filename.match(/^(\d+)/);
+  const match = filename.match(/^(\d+[a-zA-Z]?)/);
   return match ? match[1] : null;
 }
 
 function getTrackTitle(filename) {
   if (!filename) return '';
-  // Remove track number and file extension
-  const withoutNumber = filename.replace(/^\d+\s*/, '');
+  // Remove track number and optional letter suffix, then file extension
+  const withoutNumber = filename.replace(/^\d+[a-zA-Z]?\s*/, '');
   const withoutExt = withoutNumber.replace(/\.[^/.]+$/, '');
   // Normalize separators and clean up common patterns
   return withoutExt
@@ -67,7 +67,20 @@ function generateManifest() {
 
   // Sort by track number and build manifest
   const sortedNumbers = Array.from(trackMap.keys())
-    .sort((a, b) => parseInt(a) - parseInt(b));
+    .sort((a, b) => {
+      const aMatch = a.match(/^(\d+)([a-zA-Z]?)$/);
+      const bMatch = b.match(/^(\d+)([a-zA-Z]?)$/);
+      if (!aMatch || !bMatch) return a.localeCompare(b, undefined, {numeric: true});
+      const aNum = parseInt(aMatch[1], 10);
+      const bNum = parseInt(bMatch[1], 10);
+      if (aNum !== bNum) return aNum - bNum;
+      const aSuffix = aMatch[2] || '';
+      const bSuffix = bMatch[2] || '';
+      if (aSuffix === bSuffix) return 0;
+      if (!aSuffix) return -1;
+      if (!bSuffix) return 1;
+      return aSuffix.localeCompare(bSuffix);
+    });
 
   const manifest = sortedNumbers.map(number => {
     const track = trackMap.get(number);
