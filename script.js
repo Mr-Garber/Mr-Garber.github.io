@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initFormspreeForms()
   initPhoneFormatting()
   await initSharedAudioPlayer()
+  await initChoreographyPlayer()
 })
 
 async function initSharedAudioPlayer() {
@@ -140,7 +141,8 @@ async function initSharedAudioPlayer() {
   const seekInput = document.getElementById('player-seek')
   const currentTimeLabel = document.getElementById('current-time')
   const durationLabel = document.getElementById('duration')
-  const modeButtons = Array.from(document.querySelectorAll('.player-mode-button'))
+  const audioPlayerCard = document.querySelector('.audio-player-card')
+  const modeButtons = Array.from(audioPlayerCard?.querySelectorAll('.player-mode-button') || [])
   const audioLibrary = document.getElementById('audio-library')
   const playPauseButton = document.getElementById('player-play-pause')
   const manifestTracks = await loadPlayerManifest()
@@ -386,6 +388,151 @@ async function initSharedAudioPlayer() {
 
   setTrackSource()
   updatePlayPauseButton()
+}
+
+async function initChoreographyPlayer() {
+  const video = document.getElementById('shared-choreography-video')
+  if (!video) return
+
+  const library = document.getElementById('choreography-library')
+  const poster = document.getElementById('choreography-poster')
+  const currentNumber = document.getElementById('current-choreography-number')
+  const currentTitle = document.getElementById('current-choreography-title')
+  const currentQuality = document.getElementById('current-choreography-quality')
+  const qualityButtons = Array.from(document.querySelectorAll('[data-quality]'))
+
+  let manifest = []
+  try {
+    const response = await fetch('scripts/choreography-manifest.json', { cache: 'no-cache' })
+    if (!response.ok) throw new Error(`Unable to load choreography manifest: ${response.status}`)
+    manifest = await response.json()
+  } catch (error) {
+    console.error(error)
+    manifest = []
+  }
+
+  const videos = Array.isArray(manifest) && manifest.length ? manifest : []
+  let selectedIndex = 0
+  let selectedQuality = '720'
+
+  function renderCards() {
+    if (!library) return
+
+    if (!videos.length) {
+      library.innerHTML = '<p class="resource-empty-state">No choreography videos are available yet.</p>'
+      return
+    }
+
+    library.innerHTML = ''
+
+    videos.forEach((videoItem, index) => {
+      const button = document.createElement('button')
+      button.type = 'button'
+      button.className = `video-card${index === selectedIndex ? ' selected' : ''}`
+      button.setAttribute('role', 'listitem')
+      button.setAttribute('data-video-index', index)
+
+      const preview = document.createElement('div')
+      preview.className = 'video-poster-preview'
+      const previewLabel = document.createElement('span')
+      previewLabel.textContent = videoItem.title
+      preview.appendChild(previewLabel)
+
+      const copy = document.createElement('div')
+      copy.className = 'video-card-copy'
+
+      const trackNum = document.createElement('p')
+      trackNum.className = 'audio-track-number'
+      trackNum.textContent = `Dance ${videoItem.number}`
+
+      const title = document.createElement('h3')
+      title.textContent = videoItem.title
+
+      copy.appendChild(trackNum)
+      copy.appendChild(title)
+      button.appendChild(preview)
+      button.appendChild(copy)
+      library.appendChild(button)
+    })
+  }
+
+  function updateSelection() {
+    const cards = Array.from(document.querySelectorAll('.video-card'))
+    cards.forEach((card, index) => {
+      const isSelected = index === selectedIndex
+      card.classList.toggle('selected', isSelected)
+      card.setAttribute('aria-current', isSelected ? 'true' : 'false')
+    })
+  }
+
+  function updatePlayerInfo() {
+    const currentVideo = videos[selectedIndex]
+    if (!currentVideo) return
+
+    currentNumber.textContent = `Dance ${currentVideo.number}`
+    currentTitle.textContent = currentVideo.title
+    currentQuality.textContent = selectedQuality === '480' ? '480p' : '720p'
+    poster?.querySelector('.video-poster-label')?.replaceChildren(document.createTextNode(currentVideo.title))
+  }
+
+  function setVideoSource(shouldPlay = false) {
+    const currentVideo = videos[selectedIndex]
+    if (!currentVideo) return
+
+    const qualityKey = selectedQuality === '480' ? 'video480' : 'video720'
+    const source = currentVideo[qualityKey] || currentVideo.video720 || currentVideo.video480
+
+    if (source) {
+      video.src = source
+      video.load()
+    }
+
+    if (poster) {
+      poster.classList.remove('is-hidden')
+    }
+
+    updatePlayerInfo()
+
+    if (shouldPlay && source) {
+      video.play().catch(() => {})
+    }
+  }
+
+  qualityButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      qualityButtons.forEach(btn => btn.classList.remove('active'))
+      button.classList.add('active')
+      selectedQuality = button.dataset.quality || '720'
+      setVideoSource(false)
+    })
+  })
+
+  library?.addEventListener('click', event => {
+    const target = event.target instanceof Element ? event.target.closest('.video-card') : null
+    if (!target) return
+
+    selectedIndex = Number(target.dataset.videoIndex || 0)
+    updateSelection()
+    setVideoSource(true)
+  })
+
+  renderCards()
+  updateSelection()
+  setVideoSource(false)
+
+  video.addEventListener('loadedmetadata', () => {
+    poster?.classList.add('is-hidden')
+  })
+
+  video.addEventListener('play', () => {
+    poster?.classList.add('is-hidden')
+  })
+
+  video.addEventListener('pause', () => {
+    if (video.currentTime <= 0) {
+      poster?.classList.remove('is-hidden')
+    }
+  })
 }
 
 function openPosterModal(trigger) {

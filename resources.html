@@ -78,6 +78,41 @@
         <!-- Track cards will be generated dynamically from manifest -->
       </div>
     </section>
+
+    <section class="resource-library choreography-section" aria-labelledby="choreography-heading">
+      <div class="resource-library-header">
+        <p class="resource-library-kicker">Choreography</p>
+        <h2 id="choreography-heading">Dance Rehearsal Videos</h2>
+        <p>Practice and review the choreography for selected numbers.</p>
+      </div>
+
+      <div class="video-player-card">
+        <div class="audio-player-header">
+          <div class="player-info">
+            <p class="audio-track-number" id="current-choreography-number">Dance 01</p>
+            <h3 id="current-choreography-title">76 Trombones</h3>
+            <p class="audio-track-version" id="current-choreography-quality">720p</p>
+          </div>
+          <div class="player-mode-toggle" role="group" aria-label="Select video quality">
+            <button type="button" class="player-mode-button active" data-quality="720">720p</button>
+            <button type="button" class="player-mode-button" data-quality="480">480p</button>
+          </div>
+        </div>
+
+        <div class="video-player-shell">
+          <div class="video-poster-card" id="choreography-poster" aria-hidden="true">
+            <span class="video-poster-label">76 Trombones</span>
+          </div>
+          <video id="shared-choreography-video" controls preload="metadata" playsinline>
+            Your browser does not support the video element.
+          </video>
+        </div>
+      </div>
+
+      <div class="audio-library video-library" role="list" id="choreography-library">
+        <!-- Choreography cards will be generated dynamically from manifest -->
+      </div>
+    </section>
   </section>
 
 </main>

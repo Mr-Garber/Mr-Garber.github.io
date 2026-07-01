@@ -624,11 +624,16 @@ main {
 
 .resource-library {
   padding: 28px;
+  margin-bottom: 24px;
   background: rgba(9, 9, 12, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 18px;
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(4px);
+}
+
+.choreography-section {
+  margin-top: 8px;
 }
 
 .resource-library-header {
@@ -855,11 +860,132 @@ main {
   outline-offset: 3px;
 }
 
-/* ========================================
-   Summer Workshop Page
-======================================== */
+.video-player-card {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 22px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+}
 
-.workshop-header-image {
+.video-player-shell {
+  position: relative;
+  display: grid;
+  border-radius: 18px;
+  overflow: hidden;
+  min-height: 320px;
+  background: #000;
+}
+
+#shared-choreography-video {
+  width: 100%;
+  display: block;
+  background: #000;
+  border-radius: 18px;
+}
+
+.video-poster-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(148, 0, 7, 0.95), rgba(40, 15, 16, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.video-poster-card.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.video-poster-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff9ef;
+  text-align: center;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.video-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(255, 248, 239, 0.12), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.video-poster-preview {
+  min-height: 112px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(148, 0, 7, 0.95), rgba(40, 15, 16, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.video-poster-preview span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff9ef;
+}
+
+.video-card-copy h3 {
+  margin: 2px 0 4px;
+  font-size: 1.08rem;
+  color: #fff6e8;
+  line-height: 1.2;
+}
+
+.video-card-copy p {
+  margin: 0;
+  color: rgba(255, 245, 231, 0.76);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.video-card:hover,
+.video-card:focus-within {
+  transform: translateY(-2px);
+}
+
+.video-card.selected {
+  border-color: #f6c15d;
+  box-shadow: 0 18px 36px rgba(246, 193, 93, 0.14);
+}
+
+.video-card:focus-visible {
+  outline: 2px solid #f6c15d;
+  outline-offset: 3px;
+}
+
+.resource-empty-state {
+  padding: 16px;
+  color: rgba(255, 245, 231, 0.86);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+}
+
   max-width: 980px;
   margin: 0 auto;
   padding: 0 20px;

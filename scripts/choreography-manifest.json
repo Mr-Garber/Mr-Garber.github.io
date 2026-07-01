@@ -1,0 +1,18 @@
+[
+  {
+    "id": "76-trombones",
+    "number": "01",
+    "title": "76 Trombones",
+    "description": "Choreography practice footage for the opening number.",
+    "video480": "video/choreography/Music Man Jr/76_trombones_choreo_480.m4v",
+    "video720": "video/choreography/Music Man Jr/76_trombones_choreo_720.m4v"
+  },
+  {
+    "id": "shipoopi",
+    "number": "02",
+    "title": "Shipoopi",
+    "description": "Dance rehearsal footage for the featured performance number.",
+    "video480": "video/choreography/Music Man Jr/shipoopi_choreo_480.m4v",
+    "video720": "video/choreography/Music Man Jr/shipoopi_choreo_720.m4v"
+  }
+]
