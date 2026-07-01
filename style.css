@@ -879,6 +879,18 @@ main {
   background: #000;
 }
 
+.choreography-video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+}
+
+.choreography-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 #shared-choreography-video {
   width: 100%;
   display: block;

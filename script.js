@@ -391,15 +391,13 @@ async function initSharedAudioPlayer() {
 }
 
 async function initChoreographyPlayer() {
-  const video = document.getElementById('shared-choreography-video')
-  if (!video) return
+  const videoWrapper = document.getElementById('choreography-video-wrapper')
+  if (!videoWrapper) return
 
   const library = document.getElementById('choreography-library')
   const poster = document.getElementById('choreography-poster')
   const currentNumber = document.getElementById('current-choreography-number')
   const currentTitle = document.getElementById('current-choreography-title')
-  const currentQuality = document.getElementById('current-choreography-quality')
-  const qualityButtons = Array.from(document.querySelectorAll('[data-quality]'))
 
   let manifest = []
   try {
@@ -413,7 +411,6 @@ async function initChoreographyPlayer() {
 
   const videos = Array.isArray(manifest) && manifest.length ? manifest : []
   let selectedIndex = 0
-  let selectedQuality = '720'
 
   function renderCards() {
     if (!library) return
@@ -471,41 +468,37 @@ async function initChoreographyPlayer() {
 
     currentNumber.textContent = `Dance ${currentVideo.number}`
     currentTitle.textContent = currentVideo.title
-    currentQuality.textContent = selectedQuality === '480' ? '480p' : '720p'
     poster?.querySelector('.video-poster-label')?.replaceChildren(document.createTextNode(currentVideo.title))
   }
 
-  function setVideoSource(shouldPlay = false) {
+  function setVideoSource() {
     const currentVideo = videos[selectedIndex]
-    if (!currentVideo) return
+    if (!currentVideo || !videoWrapper) return
 
-    const qualityKey = selectedQuality === '480' ? 'video480' : 'video720'
-    const source = currentVideo[qualityKey] || currentVideo.video720 || currentVideo.video480
+    const youtubeId = currentVideo.youtubeId
+    const embedSrc = youtubeId ? `https://www.youtube.com/embed/${youtubeId}?rel=0&showinfo=0` : ''
 
-    if (source) {
-      video.src = source
-      video.load()
+    if (!embedSrc) {
+      videoWrapper.innerHTML = '<p class="resource-empty-state">This choreography video is unavailable.</p>'
+      return
     }
 
-    if (poster) {
-      poster.classList.remove('is-hidden')
+    let iframe = videoWrapper.querySelector('iframe')
+    if (!iframe) {
+      iframe = document.createElement('iframe')
+      iframe.setAttribute('allowfullscreen', '')
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share')
+      iframe.className = 'choreography-iframe'
+      videoWrapper.innerHTML = ''
+      videoWrapper.appendChild(iframe)
     }
+
+    iframe.src = embedSrc
+    iframe.title = `Choreography: ${currentVideo.title}`
+    poster?.classList.add('is-hidden')
 
     updatePlayerInfo()
-
-    if (shouldPlay && source) {
-      video.play().catch(() => {})
-    }
   }
-
-  qualityButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      qualityButtons.forEach(btn => btn.classList.remove('active'))
-      button.classList.add('active')
-      selectedQuality = button.dataset.quality || '720'
-      setVideoSource(false)
-    })
-  })
 
   library?.addEventListener('click', event => {
     const target = event.target instanceof Element ? event.target.closest('.video-card') : null
@@ -513,26 +506,13 @@ async function initChoreographyPlayer() {
 
     selectedIndex = Number(target.dataset.videoIndex || 0)
     updateSelection()
-    setVideoSource(true)
+    setVideoSource()
   })
 
   renderCards()
   updateSelection()
   setVideoSource(false)
 
-  video.addEventListener('loadedmetadata', () => {
-    poster?.classList.add('is-hidden')
-  })
-
-  video.addEventListener('play', () => {
-    poster?.classList.add('is-hidden')
-  })
-
-  video.addEventListener('pause', () => {
-    if (video.currentTime <= 0) {
-      poster?.classList.remove('is-hidden')
-    }
-  })
 }
 
 function openPosterModal(trigger) {
