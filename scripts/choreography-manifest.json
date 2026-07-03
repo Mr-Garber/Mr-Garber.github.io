@@ -1,13 +1,25 @@
 [
   {
-    "id": "76-trombones",
+    "id": "ya-got-trouble",
     "number": "01",
+    "title": "Ya Got Trouble",
+    "youtubeId": "MVG-tW72x9U"
+  },
+  {
+    "id": "76-trombones",
+    "number": "02",
     "title": "76 Trombones",
     "youtubeId": "g3NNxQcBnXA"
   },
   {
+    "id": "wells-fargo",
+    "number": "03",
+    "title": "Wells Fargo",
+    "youtubeId": "ZmQpGITxj3s"
+  },
+  {
     "id": "shipoopi",
-    "number": "02",
+    "number": "04",
     "title": "Shipoopi",
     "youtubeId": "pc6IrwHYXLQ"
   }
