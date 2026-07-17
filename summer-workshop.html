@@ -39,53 +39,35 @@
 
   <!-- PAGE CONTENT -->
   <section class="page-content workshop-content">
-    
-    <!-- REGISTER BUTTON -->
-    <div class="workshop-register-wrap">
-      <a
-        href="summer-workshop-registration.html"
-        class="register-btn"
+    <p>
+      The 2026 Summer Theatre Workshop is complete. Take a look at some of the pictures below to relive the experience.
+    </p>
+
+    <div class="workshop-gallery-trigger-wrap">
+      <button
+        type="button"
+        class="playbill-trigger"
+        data-carousel-title="The Music Man Jr."
+        data-gallery-folder="images/Past%20Productions/2026-The%20Music%20Man%20Jr"
       >
-        Register Here
-      </a>
-    </div>
-
-    <p>
-      The Summer Intensive Theatre Workshop is a two-week intensive workshop preparing the show for production.
-      Students will learn music, choreography, blocking, set building, and publicity. The Summer Theatre Workshop
-      program is offered to all students grades 2nd - 12th regardless of school district.
-    </p>
-
-    <p>
-      The Workshop will run Monday through Thursday both weeks. The day will begin promptly at 9:30am and will
-      finish at 1:00pm. There will be half an hour for lunchtime (self-provided) from 11:30-12:00.
-    </p>
-
-    <!-- WORKSHOP DATES -->
-    <div class="workshop-highlight">
-      <h2>Workshop Dates</h2>
-      <p>June 29 - July 9, 2026 (Monday-Thursdays, 9:30am - 1:00pm)</p>
-    </div>
-
-    <!-- PERFORMANCE DATES -->
-    <div class="workshop-highlight">
-      <h2>Performance Dates</h2>
-      <p>Friday, July 10, 2026 - 7:00pm</p>
-      <p>Saturday, July 11, 2026 - 2:00pm</p>
-    </div>
-
-    <!-- REGISTRATION FEE -->
-    <div class="workshop-highlight">
-      <h2>Registration Fee</h2>
-      <p>$100 before May 31, 2026</p>
-      <p>$125 after June 1, 2026</p>
-    </div>
-
-    <!-- REGISTER BUTTON -->
-    <div class="workshop-register-wrap">
-      <div data-include="includes/register-button.html"></div>
+        View Production Photos
+      </button>
     </div>
   </section>
+
+  <div class="past-carousel-modal" id="past-carousel-modal" aria-hidden="true">
+    <div class="past-carousel-backdrop" data-close-past-carousel></div>
+    <div class="past-carousel-dialog" role="dialog" aria-modal="true" aria-labelledby="past-carousel-title">
+      <button type="button" class="past-carousel-close" data-close-past-carousel aria-label="Close production carousel">&times;</button>
+      <h2 id="past-carousel-title"></h2>
+      <img id="past-carousel-image" src="" alt="">
+      <div class="past-carousel-controls">
+        <button type="button" class="past-carousel-nav" data-past-carousel-prev>&larr; Previous</button>
+        <span id="past-carousel-count"></span>
+        <button type="button" class="past-carousel-nav" data-past-carousel-next>Next &rarr;</button>
+      </div>
+    </div>
+  </div>
 
 </main>
 
