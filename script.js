@@ -149,12 +149,12 @@ async function initSharedAudioPlayer() {
 
   const tracks = Array.isArray(manifestTracks) && manifestTracks.length
     ? manifestTracks
-    : [
+: [
       {
-        number: '02',
-        title: 'Rock Island',
-        rehearsalSrc: 'music/music man jr rehearsal music/02 Rock Island W_Vocals.mp3',
-        accompanimentSrc: 'music/music man jr accompaniment music/02 Rock Island.mp3',
+        number: '01',
+        title: 'Pure Imagination',
+        rehearsalSrc: 'music/willy wonka jr/Willy Wonka Jr. - Rehearsal CD/01 Pure Imagination.mp3',
+        accompanimentSrc: 'music/willy wonka jr/Willy Wonka Jr. - Accompaniment CD/01 Pure Imagination.mp3',
       },
     ]
 
@@ -251,7 +251,7 @@ async function initSharedAudioPlayer() {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: track.title,
       artist: 'GBK Productions',
-      album: 'The Music Man Jr.',
+      album: 'Willy Wonka Jr.',
       artwork: [
         { src: 'images/logo.png', sizes: '512x512', type: 'image/png' },
       ],

@@ -118,6 +118,18 @@ p {
   color: #fff;
   font-weight: 600;
   font-size: 1.1rem;
+  display: inline-flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav-logo-subtitle {
+  display: block;
+  font-size: 0.55rem;
+  font-style: italic;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 0.1rem;
 }
 
 .nav-logo-img {
@@ -294,18 +306,48 @@ main {
   position: relative;
   height: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.25);
   text-align: center;
 }
 
+.logo-container {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
 .logo {
-  width: 65%;
-  max-width: 600px;
+  display: block;
+  width: 85%;
+  max-width: 760px;
   height: auto;
+  margin: 0 auto;
   border-radius: 10%;
+}
+
+.hero-caption {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1.2rem, 4vw, 2rem);
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: clamp(0.95rem, 2vw, 1.3rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  opacity: 0.95;
+  white-space: nowrap;
+  padding: 0 0.25rem;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .hero-caption {
+    font-size: 0.85rem;
+    bottom: 1.2rem;
+  }
 }
 
 .hero h1 {
@@ -1011,6 +1053,18 @@ main {
   margin: 0 auto;
   border-radius: 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sponsors-page .workshop-header-image img {
+  width: auto;
+  max-width: 360px;
+}
+
+@media (max-width: 640px) {
+  .sponsors-page .workshop-header-image img {
+    max-width: 220px;
+  }
+}
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
