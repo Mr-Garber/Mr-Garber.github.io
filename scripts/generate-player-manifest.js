@@ -3,8 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const REHEARSAL_DIR = path.join(__dirname, '../music/music man jr rehearsal music');
-const ACCOMPANIMENT_DIR = path.join(__dirname, '../music/music man jr accompaniment music');
+const REHEARSAL_DIR = path.join(__dirname, '../music/willy wonka jr/Willy Wonka Jr. - Rehearsal CD');
+const ACCOMPANIMENT_DIR = path.join(__dirname, '../music/willy wonka jr/Willy Wonka Jr. - Accompaniment CD');
 const OUTPUT_FILE = path.join(__dirname, 'player-manifest.json');
 
 function extractTrackNumber(filename) {
@@ -40,7 +40,7 @@ function generateManifest() {
           trackMap.set(number, {});
         }
         trackMap.get(number).number = number;
-        trackMap.get(number).rehearsalSrc = `music/music man jr rehearsal music/${file}`;
+        trackMap.get(number).rehearsalSrc = `music/willy wonka jr/Willy Wonka Jr. - Rehearsal CD/${file}`;
       }
     });
   } catch (error) {
@@ -57,7 +57,7 @@ function generateManifest() {
         if (!trackMap.has(number)) {
           trackMap.set(number, {});
         }
-        trackMap.get(number).accompanimentSrc = `music/music man jr accompaniment music/${file}`;
+        trackMap.get(number).accompanimentSrc = `music/willy wonka jr/Willy Wonka Jr. - Accompaniment CD/${file}`;
       }
     });
   } catch (error) {
