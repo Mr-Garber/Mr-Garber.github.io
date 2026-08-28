@@ -525,7 +525,9 @@ function openPosterModal(trigger) {
   const register = document.getElementById('poster-modal-register')
   if (!modal || !image || !title || !quick || !blurb || !registerTop || !register) return
 
-  const src = trigger.getAttribute('data-poster-src')
+  const src =
+    trigger.getAttribute('data-poster-modal-src') ||
+    trigger.getAttribute('data-poster-src')
   const posterTitle = trigger.getAttribute('data-poster-title') || 'Show Poster'
   const posterQuick =
     trigger.getAttribute('data-poster-logistics') ||
@@ -534,7 +536,9 @@ function openPosterModal(trigger) {
   const posterBlurb = trigger.getAttribute('data-poster-blurb') || ''
   const shouldShowRegister = trigger.getAttribute('data-poster-register') === 'true'
   const thumb = trigger.querySelector('img')
-  const alt = thumb ? thumb.getAttribute('alt') : posterTitle
+  const alt =
+    trigger.getAttribute('data-poster-modal-alt') ||
+    (thumb ? thumb.getAttribute('alt') : posterTitle)
 
   if (!src) return
   image.setAttribute('src', src)

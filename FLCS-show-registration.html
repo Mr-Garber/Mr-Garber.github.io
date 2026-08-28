@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GBK Productions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <script src="scripts/include-html.js" defer></script>
+</head>
+
+<body>
+
+<!-- NAV BAR -->
+<div data-include="includes/nav-bar.html"></div>
+<section class="donate-strip donate-strip-header" data-include="includes/donate-bar.html"></section>
+
+<main class="subpage">
+
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay muted loop playsinline class="page-bg-video">
+    <source src="video/background.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="page-overlay"></div>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <h1>Willy Wonka Jr. Registration</h1>
+  </section>
+
+  <!-- PAGE CONTENT -->
+  <section class="page-content registration-page-content">
+    <div class="registration-audition-poster">
+      <img src="images/Posters/Willy%20Wonka%20Audition%20Info.png" alt="Willy Wonka Jr. audition information">
+    </div>
+    <div class="registration-shell">
+      <article class="registration-panel registration-panel-form">
+        <h2>Registration Form</h2>
+        <p class="registration-form-intro">
+          Fill out one form per student registered. Thank you!
+        </p>
+        <div class="registration-embed-card">
+          <div class="registration-embed-frame">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSerMCJ7Vi97gAr0d5FQORW0bAsHcWPsKiehhga-DWJfjLw7YA/viewform?embedded=true"
+              title="Willy Wonka Jr. Registration Form"
+              loading="lazy"
+            >
+              Loading...
+            </iframe>
+          </div>
+
+          <div class="registration-embed-actions">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSerMCJ7Vi97gAr0d5FQORW0bAsHcWPsKiehhga-DWJfjLw7YA/viewform?usp=dialog"
+              class="register-btn register-btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Google Form
+            </a>
+          </div>
+
+          <p class="contact-form-note registration-embed-note">
+            If the embedded form does not load well on your device, use the button above to open it in a new tab.
+          </p>
+
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<div data-include="includes/contact-bar.html"></div>
+<div data-include="includes/attribution.html"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
