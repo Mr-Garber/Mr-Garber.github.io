@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="1100" viewBox="0 0 850 1100" role="img" aria-labelledby="title description">
+  <title id="title">Disney's Aladdin Jr. placeholder poster</title>
+  <desc id="description">A simple text-only placeholder poster reading Disney's Aladdin Jr. Coming Soon.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17123c"/>
+      <stop offset="1" stop-color="#3d174d"/>
+    </linearGradient>
+    <linearGradient id="titleGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1ad"/>
+      <stop offset="0.5" stop-color="#e8b84e"/>
+      <stop offset="1" stop-color="#c88225"/>
+    </linearGradient>
+  </defs>
+  <rect width="850" height="1100" fill="url(#background)"/>
+  <rect x="38" y="38" width="774" height="1024" rx="8" fill="none" stroke="#e7bc59" stroke-width="2" opacity="0.8"/>
+  <text x="425" y="375" fill="#fff4cb" font-family="Georgia, serif" font-size="42" font-weight="bold" text-anchor="middle" letter-spacing="5">DISNEY'S</text>
+  <text x="425" y="520" fill="url(#titleGold)" font-family="Georgia, serif" font-size="126" font-weight="bold" font-style="italic" text-anchor="middle">Aladdin</text>
+  <text x="425" y="585" fill="#fff4cb" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" letter-spacing="12">JR.</text>
+  <line x1="185" y1="675" x2="665" y2="675" stroke="#e7bc59" stroke-width="2"/>
+  <text x="425" y="735" fill="#fff4cb" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" letter-spacing="5">COMING SOON</text>
+  <text x="425" y="965" fill="#e7bc59" font-family="Arial, sans-serif" font-size="20" text-anchor="middle" letter-spacing="3">GBK PRODUCTIONS</text>
+</svg>
