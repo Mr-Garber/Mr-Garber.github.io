@@ -20,7 +20,7 @@ function getTrackTitle(filename) {
   // Normalize separators and clean up common patterns
   return withoutExt
     .replace(/_/g, ' ')
-    .replace(/\s*W(?:_?Vocals?|_?Voca|_?V)?\b.*$/i, '')
+    .replace(/\s+W(?:_?Vocals?|_?Voca|_?V)?\b.*$/i, '')
     .replace(/\s*\(A cappella.*$/i, '')
     .replace(/\s*W\.$/i, '')
     .replace(/\s+/g, ' ')
