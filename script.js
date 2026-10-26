@@ -523,7 +523,7 @@ function openPosterModal(trigger) {
   const blurb = document.getElementById('poster-modal-blurb')
   const registerTop = document.getElementById('poster-modal-register-top')
   const register = document.getElementById('poster-modal-register')
-  if (!modal || !image || !title || !quick || !blurb || !registerTop || !register) return
+  if (!modal || !image || !title || !quick || !blurb) return
 
   const src =
     trigger.getAttribute('data-poster-modal-src') ||
@@ -546,8 +546,8 @@ function openPosterModal(trigger) {
   title.textContent = posterTitle
   quick.textContent = posterQuick
   blurb.textContent = posterBlurb
-  registerTop.classList.toggle('is-hidden', !shouldShowRegister)
-  register.classList.toggle('is-hidden', !shouldShowRegister)
+  if (registerTop) registerTop.classList.toggle('is-hidden', !shouldShowRegister)
+  if (register) register.classList.toggle('is-hidden', !shouldShowRegister)
   modal.classList.add('open')
   modal.setAttribute('aria-hidden', 'false')
   document.body.style.overflow = 'hidden'
@@ -560,15 +560,15 @@ function closePosterModal() {
   const blurb = document.getElementById('poster-modal-blurb')
   const registerTop = document.getElementById('poster-modal-register-top')
   const register = document.getElementById('poster-modal-register')
-  if (!modal || !image || !quick || !blurb || !registerTop || !register) return
+  if (!modal || !image || !quick || !blurb) return
 
   modal.classList.remove('open')
   modal.setAttribute('aria-hidden', 'true')
   image.setAttribute('src', '')
   quick.textContent = ''
   blurb.textContent = ''
-  registerTop.classList.add('is-hidden')
-  register.classList.add('is-hidden')
+  if (registerTop) registerTop.classList.add('is-hidden')
+  if (register) register.classList.add('is-hidden')
   document.body.style.overflow = ''
 }
 
